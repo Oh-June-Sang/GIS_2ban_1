@@ -16,3 +16,8 @@
 
      margin-top:2rem;
 }
+
+.mw-500{
+    max_width: 500px;
+    padding : 1rem 1.5rem;
+}
