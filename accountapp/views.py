@@ -70,10 +70,10 @@ class AccountDeleteView(DeleteView):
         if request.user.is_authenticated and self.get_object() == request.user:
             return super().get(request, *args, **kwargs)
         else:
-            return  return HttpResponseForbidden()
+            return HttpResponseForbidden()
 
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated and self.get_object() == request.user:
             return super().get(request, *args, **kwargs)
         else:
-            return  return HttpResponseForbidden()
+            return HttpResponseForbidden()
