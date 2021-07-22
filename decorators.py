@@ -1,35 +1,13 @@
-
-def decorator(func):
-    def decorated(input_text):
-        print("함수 시작!")
-        func(input_text)
-        print("함수 끝!")
-    return decorated
+from django.contrib.auth.models import User
+from django.http import HttpResponseForbidden
 
 
-@decorator
-def hello_world(input_text):
-    print("함수 시작!")
-    print(input_text)
-    print("함수 끝!")
-
-
-def check_integer(func):
-    def decorated(width, height):
-        if width >=0 and height >=0 :
-            return func(width,height)
+def account_ownership_required(func):
+    def decorated(request, *args, **kwargs):
+        target_user = User.objects.get(pk= kwargs['pk'])
+        if target_user == request.user:
+            return func(request, *args, **kwargs)
         else:
-            raise ValueError("inpuut must be post")
+            return HttpResponseForbidden()
+
     return decorated
-
-
-@check_integer
-def rect_area(width, height):
-    return width * height
-
-@check_integer
-def tri_area(width, height):
-    return 0.5 * width * height
-
-print(tri_area(1,2))
-print(rect_area(1,2))
