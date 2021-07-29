@@ -36,7 +36,7 @@
 
 }
 
-.round_button {
+.round button{
     color: black;
     text-decoration: none;
     box-shadow: 0 0 3px black;
@@ -44,7 +44,6 @@
     padding: 0.3rem;
 }
 
-
-.round_button:hover {
+.round butoon:hover{
     color: dimgrey;
 }
