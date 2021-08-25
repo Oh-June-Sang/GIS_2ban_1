@@ -1,22 +1,29 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
+
+
     <div class="container text-center">
         <div class="my-5">
             {#      게시글 제목, 글쓴이, 작성일자      #}
             <h1 class="NNS_B">{{ target_article.title }}</h1>
-            <div>
+            <div class="my-3">
                 <a href="{% url 'likeapp:article_like' article_pk=target_article.pk %}"
-                   class="material-icons">
+                   class="material-icons"
+                   style="vertical-align: middle; font-size: 1.4rem; color: #f77">
                     favorite
                 </a>
-                <span>
+                <span style="vertical-align: middle; font-size: 1.2rem;">
                     {{ target_article.like }}
                 </span>
             </div>
             <h4>{{ target_article.writer.profile.nickname }}</h4>
             <p>{{ target_article.created_at }}</p>
         </div>
+
         <hr>
+
         <div class="my-5">
             {#      게시글 내용, 게시글 대표 이미지      #}
             <img src="{{ target_article.image.url }}"
@@ -38,10 +45,14 @@
             </div>
             {% endif %}
         </div>
+
         <hr>
+
         <div class="text-center my-4">
             {#      댓글 작성 폼 및 댓글      #}
+
             {% for comment in target_article.comment.all %}
+
                 <div class="comment_box">
                     <div>
                         <span class="NNS_B" style="font-size: 1.4rem;">
@@ -65,7 +76,10 @@
                 </div>
 
             {% endfor %}
+
             {% include 'commentapp/create.html' %}
         </div>
     </div>
+
+
 {% endblock %}
