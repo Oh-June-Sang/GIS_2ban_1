@@ -18,6 +18,8 @@ services:
       - aws_network
     secrets:
       - DJANGO_SECRET_KEY
+      - MARIADB_USER
+      - MARIADB_PASSWORD
     volumes:
       - aws_media:/home/GIS_2ban_1/media/
       - aws_static:/home/GIS_2ban_1/staticfiles/
@@ -28,6 +30,10 @@ services:
       - aws_network
     volumes:
       - aws_mariadb:/var/lib/mysql
+    secrets:
+      - MARIADB_USER
+      - MARIADB_ROOT_PASSWORD
+      - MARIADB_PASSWORD
     environment:
       MARIADB_DATABASE: django
       MARIADB_USER: django
@@ -45,4 +51,10 @@ volumes:
 
 secrets:
   DJANGO_SECRET_KEY:
+    external: true
+  MARIADB_USER:
+    external: true
+  MARIADB_PASSWORD:
+    external: true
+  MARIADB_ROOT_PASSWORD:
     external: true
