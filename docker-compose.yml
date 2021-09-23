@@ -1,0 +1,48 @@
+version: "3.7"
+services:
+
+  nginx:
+    image: nginx:1.19.5
+    networks:
+      - aws_network
+    volumes:
+      - aws_media:/data/media/
+      - aws_static:/data/static/
+      - /home/ubuntu/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+
+  django:
+    image: aws_django:4
+    networks:
+      - aws_network
+    secrets:
+      - DJANGO+SECRET_KEY
+    volumes:
+      - aws_media:/home/GIS_2ban_1/media/
+      - aws_static:/home/GIS_2ban_1/staticfiles/
+
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - aws_network
+    volumes:
+      - aws_mariadb:/var/lib/mysql
+    environment:
+      MARIADB_DATABASE: django
+      MARIADB_USER: django
+      MARIADB_PASSWORD: dhdmstkd5576
+      MARIADB_ROOT_PASSWORD: dhdmstkd5576
+
+
+networks:
+  aws_network:
+
+volumes:
+  aws_media:
+  aws_static:
+  aws_mariadb:
+
+secrets:
+  DJANGO_SECRET_KEY:
+    external: true
