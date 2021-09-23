@@ -17,7 +17,7 @@ services:
     networks:
       - aws_network
     secrets:
-      - DJANGO+SECRET_KEY
+      - DJANGO_SECRET_KEY
     volumes:
       - aws_media:/home/GIS_2ban_1/media/
       - aws_static:/home/GIS_2ban_1/staticfiles/
