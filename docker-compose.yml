@@ -8,6 +8,7 @@ services:
     volumes:
       - aws_media:/data/media/
       - aws_static:/data/static/
+      - aws_log:/var/log/nginx/
       - /home/ubuntu/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
@@ -48,6 +49,7 @@ volumes:
   aws_media:
   aws_static:
   aws_mariadb:
+  aws_log:
 
 secrets:
   DJANGO_SECRET_KEY:
